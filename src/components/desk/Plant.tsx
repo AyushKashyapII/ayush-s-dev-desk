@@ -14,7 +14,7 @@ export function Plant() {
 
 export function Vase() {
   return (
-    <Draggable initial={{ x: 870, y: 450 }} rotate={0.4} className="w-[120px]">
+    <Draggable initial={{ right: 540, y: 450 }} rotate={0.4} className="w-[120px]">
       <CutoutImage src={vaseImg} alt="Vase with pink flower" className="w-full h-auto pointer-events-none desk-image-soft" draggable={false} />
     </Draggable>
   );

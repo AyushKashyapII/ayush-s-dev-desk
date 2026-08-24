@@ -3,7 +3,7 @@ import musicImg from "@/assets/desk/music.webp";
 
 export function MusicSticker() {
   return (
-    <Draggable initial={{ x: 488, y: 228 }} rotate={-7.5} className="w-[118px]" zIndex={15}>
+    <Draggable initial={{ x: 890, y: 140 }} rotate={-7.5} className="w-[118px]" zIndex={15}>
       <img
         src={musicImg}
         alt="Music"

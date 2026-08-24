@@ -4,7 +4,7 @@ import tablePlantImg from "@/assets/desk/tableplant.webp";
 
 export function TablePlant() {
   return (
-    <Draggable initial={{ x: 305, y: 248 }} rotate={-2.1} className="w-[172px]" zIndex={16}>
+    <Draggable initial={{ x: 540, y: 235 }} rotate={-2.1} className="w-[172px]" zIndex={16}>
       <EdgeMattedImage
         src={tablePlantImg}
         alt="Table plant"

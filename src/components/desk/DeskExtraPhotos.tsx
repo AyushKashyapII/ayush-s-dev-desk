@@ -38,7 +38,7 @@ type ExtraPhotoPolaroid = {
   id: string;
   src: string;
   alt: string;
-  initial: { x: number; y: number };
+  initial: { x?: number; y?: number; right?: number | string; left?: number | string };
   rotate: number;
   z: number;
   w: number;
@@ -49,7 +49,7 @@ type ExtraPhotoPlain = {
   id: string;
   src: string;
   alt: string;
-  initial: { x: number; y: number };
+  initial: { x?: number; y?: number; right?: number | string; left?: number | string };
   rotate: number;
   z: number;
   w: number;
@@ -61,7 +61,7 @@ const EXTRA_PHOTOS: ReadonlyArray<ExtraPhotoPolaroid | ExtraPhotoPlain> = [
     id: "tokyo",
     src: tokyoImg,
     alt: "Tokyo streets",
-    initial: { x: 248, y: 78 },
+    initial: { x: 450, y: 150 },
     rotate: -4.1,
     z: 12,
     w: 152,
@@ -71,7 +71,7 @@ const EXTRA_PHOTOS: ReadonlyArray<ExtraPhotoPolaroid | ExtraPhotoPlain> = [
     id: "coffee",
     src: coffeeImg,
     alt: "Coffee cup",
-    initial: { x: 628, y: 150 },
+    initial: { x: 740, y: 200 },
     rotate: -3.1,
     z: 18,
     w: 108,
@@ -81,7 +81,7 @@ const EXTRA_PHOTOS: ReadonlyArray<ExtraPhotoPolaroid | ExtraPhotoPlain> = [
     id: "liberty",
     src: libertyImg,
     alt: "Statue of Liberty",
-    initial: { x: 748, y: -30 },
+    initial: { x: 1070, y: -30 },
     rotate: 3.4,
     z: 25,
     w: 280,

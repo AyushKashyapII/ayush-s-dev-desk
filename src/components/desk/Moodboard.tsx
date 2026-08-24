@@ -13,7 +13,7 @@ const POLAROIDS = [
 
 export function Moodboard() {
   return (
-    <Draggable initial={{ x: 1080, y: 92 }} rotate={0.8} className="w-[372px]" zIndex={16}>
+    <Draggable initial={{ right: 120, y: 92 }} rotate={0.8} className="w-[372px]" zIndex={16}>
       {/* Cork board */}
       <div
         className="relative rounded-md p-4 pb-10"
