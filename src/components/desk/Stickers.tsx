@@ -44,8 +44,9 @@ export function Stickers() {
             type="button"
             onClick={() => setPanel("laptop")}
             animate={{ opacity: folderOpen ? 1 : 0, y: folderOpen ? -56 : -26, x: folderOpen ? 66 : 42, scale: folderOpen ? 1 : 0.9 }}
-            transition={{ duration: 0.2 }}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
+            whileHover={folderOpen ? { scale: 1.1, rotate: 6, y: -62 } : undefined}
+            transition={{ type: "spring", stiffness: 340, damping: 18 }}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto cursor-pointer"
             style={{ pointerEvents: folderOpen ? "auto" : "none" }}
           >
             <CutoutImage
@@ -61,8 +62,9 @@ export function Stickers() {
             type="button"
             onClick={() => setPanel("books")}
             animate={{ opacity: folderOpen ? 1 : 0, y: folderOpen ? 20 : -4, x: folderOpen ? -70 : -40, scale: folderOpen ? 1 : 0.9 }}
-            transition={{ duration: 0.2 }}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
+            whileHover={folderOpen ? { scale: 1.1, rotate: -6, y: 14 } : undefined}
+            transition={{ type: "spring", stiffness: 340, damping: 18 }}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto cursor-pointer"
             style={{ pointerEvents: folderOpen ? "auto" : "none" }}
           >
             <CutoutImage
@@ -98,10 +100,10 @@ export function Stickers() {
                   <p className="text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground">Current Laptop Specs</p>
                   <h3 className="mt-2 handwritten text-4xl text-foreground">My Setup</h3>
                   <div className="mt-4 space-y-2 text-sm text-foreground/80">
-                    <p><strong>CPU:</strong> Apple M2 Pro / Intel i7 class</p>
-                    <p><strong>RAM:</strong> 16-32GB</p>
-                    <p><strong>Storage:</strong> 1TB SSD</p>
-                    <p><strong>Primary Work:</strong> TypeScript, React, systems code, design tooling</p>
+                    <p><strong>Model:</strong> HP Pavilion</p>
+                    <p><strong>Processor:</strong> 11th Gen Intel Core i5-11300H @ 3.10GHz</p>
+                    <p><strong>RAM:</strong> 16 GB</p>
+                    <p><strong>OS:</strong> Linux Mint 22.3 "Zena" (Cinnamon Edition)</p>
                   </div>
                 </>
               ) : (

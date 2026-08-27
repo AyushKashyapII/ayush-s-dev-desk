@@ -227,8 +227,17 @@ export function AboutSection() {
                     x: folderExpanded ? 56 : 24,
                     scale: folderExpanded ? 1 : 0.9,
                   }}
-                  transition={{ duration: 0.22 }}
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                  whileHover={
+                    folderExpanded
+                      ? { scale: 1.1, rotate: 6, y: -54 }
+                      : undefined
+                  }
+                  transition={{
+                    type: "spring",
+                    stiffness: 340,
+                    damping: 18,
+                  }}
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
                   style={{ pointerEvents: folderExpanded ? "auto" : "none" }}
                 >
                   <CutoutImage
@@ -250,8 +259,17 @@ export function AboutSection() {
                     x: folderExpanded ? -56 : -24,
                     scale: folderExpanded ? 1 : 0.9,
                   }}
-                  transition={{ duration: 0.22 }}
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                  whileHover={
+                    folderExpanded
+                      ? { scale: 1.1, rotate: -6, y: 12 }
+                      : undefined
+                  }
+                  transition={{
+                    type: "spring",
+                    stiffness: 340,
+                    damping: 18,
+                  }}
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
                   style={{ pointerEvents: folderExpanded ? "auto" : "none" }}
                 >
                   <CutoutImage
@@ -291,9 +309,9 @@ export function AboutSection() {
                   <div className="mt-4 space-y-2 text-sm text-foreground/80">
                     <p><strong>Model:</strong> HP Pavilion</p>
                     <p><strong>Processor:</strong> 11th Gen Intel Core i5-11300H @ 3.10GHz</p>
-                    <p><strong>RAM:</strong> 8 GB (7.7 GB usable)</p>
+                    <p><strong>RAM:</strong> 16 GB</p>
                     <p><strong>System:</strong> 64-bit OS, x64-based processor</p>
-                    <p><strong>OS:</strong> Windows 11 Home Single Language (25H2)</p>
+                    <p><strong>OS:</strong> Linux Mint 22.3 "Zena" (Cinnamon Edition)</p>
                   </div>
                 </>
               ) : (
