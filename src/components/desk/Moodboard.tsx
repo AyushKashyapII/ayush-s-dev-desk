@@ -1,14 +1,12 @@
 import { Draggable } from "./Draggable";
 import polaroid1 from "@/assets/desk/Polaroid.webp";
-import polaroid2 from "@/assets/desk/Polaroid2.webp";
 import polaroid3 from "@/assets/desk/Polaroid3.webp";
 import polaroid4 from "@/assets/desk/Polaroid4.webp";
 
 const POLAROIDS = [
   { src: polaroid1, alt: "polaroid image 1", x: -4, y: 6, r: -5, z: 4, w: 188 },
-  { src: polaroid2, alt: "polaroid image 2", x: 164, y: 8, r: 4, z: 5, w: 138 },
   { src: polaroid3, alt: "polaroid image 3", x: 26, y: 165, r: 7, z: 6, w: 148 },
-  { src: polaroid4, alt: "polaroid image 4", x: 184, y: 176, r: -6, z: 7, w: 138 },
+  { src: polaroid4, alt: "polaroid image 4", x: 184, y: 140, r: -6, z: 7, w: 138 },
 ];
 
 export function Moodboard() {
