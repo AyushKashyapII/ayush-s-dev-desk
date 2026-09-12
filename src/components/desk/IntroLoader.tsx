@@ -66,9 +66,16 @@ export function IntroLoader({ onFinished }: { onFinished?: () => void }) {
   }, [onFinished, sources]);
 
   useEffect(() => {
+    const stepDuration = MAX_VISIBLE_MS / GREETINGS.length;
     const timer = window.setInterval(() => {
-      setGreetingIndex((index) => (index + 1) % GREETINGS.length);
-    }, 260);
+      setGreetingIndex((index) => {
+        if (index >= GREETINGS.length - 1) {
+          window.clearInterval(timer);
+          return index;
+        }
+        return index + 1;
+      });
+    }, stepDuration);
 
     return () => window.clearInterval(timer);
   }, []);
@@ -79,10 +86,10 @@ export function IntroLoader({ onFinished }: { onFinished?: () => void }) {
     <AnimatePresence>
       {visible ? (
         <motion.div
-          className="pointer-events-none fixed inset-0 z-[999] flex items-center justify-center overflow-hidden bg-background"
+          className="pointer-events-none fixed inset-0 z-[999] flex items-center justify-center overflow-hidden bg-background will-change-[opacity,transform]"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, filter: "blur(10px)", scale: 1.015 }}
-          transition={{ duration: 0.82, ease: [0.22, 1, 0.36, 1] }}
+          exit={{ opacity: 0, scale: 1.03 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           aria-label="Loading portfolio"
         >
           <motion.div
@@ -147,7 +154,6 @@ export function IntroLoader({ onFinished }: { onFinished?: () => void }) {
               className="mt-4 min-h-[1em] max-w-full px-2 font-mono text-[clamp(2.65rem,11vw,7.8rem)] font-black uppercase leading-[0.9] tracking-normal text-foreground"
               initial={{ opacity: 0, y: 18, rotate: -1.5 }}
               animate={{ opacity: 1, y: [0, -4, 0], rotate: [0, -0.7, 0] }}
-              exit={{ opacity: 0, y: -10 }}
               transition={{
                 opacity: { duration: 0.16, ease: "easeOut" },
                 y: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.7 },
