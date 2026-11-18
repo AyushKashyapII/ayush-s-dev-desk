@@ -156,6 +156,48 @@
 @keyframes spin-slow { to { transform: rotate(360deg); } }
 .spin-slow { animation: spin-slow 8s linear infinite; }
 
+/* Origami bird — wings fold around their bottom edge (the bird's back) */
+.origami-wing-near,
+.origami-wing-far,
+.origami-body {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation-duration: 2.6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.origami-wing-near { animation-name: origami-flap-near; }
+.origami-wing-far { animation-name: origami-flap-far; animation-delay: 0.08s; }
+.origami-body { animation-name: origami-bob; }
+.origami-wing-shade { opacity: 0; animation: origami-shade 2.6s ease-in-out infinite; }
+.origami-bird:hover .origami-wing-near,
+.origami-bird:hover .origami-wing-far,
+.origami-bird:hover .origami-body,
+.origami-bird:hover .origami-wing-shade { animation-duration: 0.9s; }
+
+/* in flight: wings sweep past the fold line. Downstroke (0→40%) is quicker than
+   the upstroke, and the body lifts on the downstroke — that asymmetry is what
+   makes it read as flying rather than a mechanical wobble. */
+.origami-bird[data-flying] .origami-wing-near,
+.origami-bird[data-flying] .origami-wing-far,
+.origami-bird[data-flying] .origami-wing-shade,
+.origami-bird[data-flying] .origami-body { animation-duration: 0.7s; }
+.origami-bird[data-flying] .origami-wing-near { animation-name: origami-fly-near; }
+.origami-bird[data-flying] .origami-wing-far { animation-name: origami-fly-far; animation-delay: 0.04s; }
+.origami-bird[data-flying] .origami-body { animation-name: origami-fly-lift; }
+
+@keyframes origami-fly-near { 0%, 100% { transform: scaleY(1); } 40% { transform: scaleY(-0.4); } }
+@keyframes origami-fly-far  { 0%, 100% { transform: scaleY(1); } 40% { transform: scaleY(-0.2); } }
+@keyframes origami-fly-lift { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-3px); } }
+@keyframes origami-flap-near { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.45); } }
+@keyframes origami-flap-far  { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.6); } }
+@keyframes origami-shade     { 0%, 100% { opacity: 0; } 50% { opacity: 0.22; } }
+@keyframes origami-bob       { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.5px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .origami-wing-near, .origami-wing-far, .origami-body, .origami-wing-shade { animation: none; }
+}
+
 /* Hide scrollbar */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }

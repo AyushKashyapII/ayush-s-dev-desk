@@ -58,6 +58,7 @@ import minimaxImg from "@/assets/desk/minimax.webp";
 import minimaxGif from "@/assets/desk/minimax_slower.gif";
 import pygitProjectImg from "@/assets/desk/pygit.webp";
 import { CutoutImage } from "./CutoutImage";
+import { FlyInOrigamiBird } from "./OrigamiBird";
 import { RamenBowl } from "./RamenBowl";
 
 const ABOUT_COPY =
@@ -816,6 +817,13 @@ export function WorkSection() {
 
   return (
     <SectionShell id="work" title="Work" containerClassName="max-w-6xl">
+      {/* zero-height anchor at the window's top-left corner for the origami bird.
+          ≥1536px (2xl): hovers in the page margin left of the window, outside the frame.
+          Smaller: hovers beside the "Work" heading. The window keeps its full width either way. */}
+      <div className="relative h-0">
+        <FlyInOrigamiBird className="absolute right-full top-10 mr-6 hidden w-[150px] drop-shadow-[0_12px_14px_rgba(60,20,20,0.18)] 2xl:block" />
+        <FlyInOrigamiBird className="absolute bottom-2 left-[110px] w-[90px] drop-shadow-[0_8px_10px_rgba(60,20,20,0.18)] sm:left-[140px] sm:w-[110px] 2xl:hidden" />
+      </div>
       <div className="overflow-hidden rounded-xl border border-border/70 bg-[oklch(0.98_0.004_90)] shadow-[0_10px_34px_rgba(60,52,40,0.08)]">
         <div className="flex items-center justify-between border-b border-border/60 bg-paper/80 px-4 py-2">
           <div className="flex items-center gap-1.5">

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { HoveringOrigamiBird } from "./OrigamiBird";
 
 const deskAssetModules = import.meta.glob("../../assets/desk/*.{png,jpg,jpeg,webp}", {
   eager: true,
@@ -141,6 +142,19 @@ export function IntroLoader({ onFinished }: { onFinished?: () => void }) {
           />
 
           <div className="relative z-10 flex w-[min(88vw,560px)] flex-col items-center text-center">
+            {/* origami bird hovering above the greeting; on exit it banks and
+                glides off toward the lower-left, where it reappears beside Work */}
+            <motion.div
+              className="w-[clamp(150px,18vw,230px)]"
+              style={{ filter: "drop-shadow(0 14px 18px rgba(60,20,20,0.2))" }}
+              initial={{ opacity: 0, scale: 0.85, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ x: "-38vw", y: "45vh", rotate: -16, scale: 0.55, opacity: 0 }}
+              transition={{ duration: 0.9, ease: [0.45, 0, 0.2, 1] }}
+              aria-hidden
+            >
+              <HoveringOrigamiBird className="w-full" />
+            </motion.div>
             <motion.p
               className="font-mono text-[11px] uppercase tracking-[0.42em] text-muted-foreground"
               initial={{ opacity: 0, y: 10 }}
@@ -198,3 +212,4 @@ export function IntroLoader({ onFinished }: { onFinished?: () => void }) {
     </AnimatePresence>
   );
 }
+
