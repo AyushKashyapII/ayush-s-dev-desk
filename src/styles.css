@@ -181,9 +181,13 @@
 .origami-bird[data-flying] .origami-wing-near,
 .origami-bird[data-flying] .origami-wing-far,
 .origami-bird[data-flying] .origami-wing-shade,
-.origami-bird[data-flying] .origami-body { animation-duration: 0.7s; }
+.origami-bird[data-flying] .origami-body {
+  /* set per bird (inline style) so a flock never flaps in lockstep */
+  animation-duration: var(--flap-duration, 0.7s);
+  animation-delay: var(--flap-delay, 0s);
+}
 .origami-bird[data-flying] .origami-wing-near { animation-name: origami-fly-near; }
-.origami-bird[data-flying] .origami-wing-far { animation-name: origami-fly-far; animation-delay: 0.04s; }
+.origami-bird[data-flying] .origami-wing-far { animation-name: origami-fly-far; animation-delay: calc(var(--flap-delay, 0s) + 0.04s); }
 .origami-bird[data-flying] .origami-body { animation-name: origami-fly-lift; }
 
 @keyframes origami-fly-near { 0%, 100% { transform: scaleY(1); } 40% { transform: scaleY(-0.4); } }

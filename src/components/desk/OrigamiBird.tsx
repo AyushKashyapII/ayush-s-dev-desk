@@ -1,5 +1,7 @@
+import type { CSSProperties } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { BODY, DEFAULT_HUE, FAR_WING, NEAR_WING, birdColor, type Facet } from "./birdGeometry";
 
 /**
  * Flat-shaded origami bird drawn as SVG facets.
@@ -14,24 +16,27 @@ import { cn } from "@/lib/utils";
  * the contact shadow.
  */
 
-// One hue, different lightness per facet: faces turned toward the light are
-// lighter, faces turned away are darker. Change HUE to recolour the whole bird.
-const HUE = 25; // red
-const c = (l: number, ch: number, alpha?: number) =>
-  `oklch(${l} ${ch} ${HUE}${alpha !== undefined ? ` / ${alpha}` : ""})`;
-
 export function OrigamiBird({
   className,
   flying = false,
+  hue = DEFAULT_HUE,
+  style,
 }: {
   className?: string;
   flying?: boolean;
+  hue?: number;
+  /** e.g. `--flap-delay` / `--flap-duration` so a flock doesn't flap in lockstep */
+  style?: CSSProperties;
 }) {
+  const c = (l: number, ch: number, alpha?: number) => birdColor(hue, l, ch, alpha);
+  const facet = (f: Facet) => <polygon key={f.points} points={f.points} fill={c(f.l, f.ch)} />;
+
   return (
     <svg
       viewBox="0 0 120 90"
       className={cn("origami-bird overflow-visible", className)}
       data-flying={flying ? "true" : undefined}
+      style={style}
       role="img"
       aria-label="Origami paper bird"
     >
@@ -43,29 +48,10 @@ export function OrigamiBird({
         stroke={c(0.32, 0.1, 0.35)}
         strokeWidth="0.5"
       >
-        {/* far wing — sits behind the body, darker because it faces away */}
-        <g className="origami-wing-far">
-          <polygon points="52,61 74,61 40,8" fill={c(0.45, 0.15)} />
-          <polygon points="52,61 60,61 40,8" fill={c(0.4, 0.14)} />
-        </g>
-
-        {/* tail */}
-        <polygon points="6,38 46,61 52,66" fill={c(0.66, 0.17)} />
-        <polygon points="6,38 52,66 56,72" fill={c(0.5, 0.16)} />
-
-        {/* body / belly */}
-        <polygon points="46,61 80,61 62,84" fill={c(0.58, 0.18)} />
-        <polygon points="46,61 62,84 56,72" fill={c(0.48, 0.16)} />
-
-        {/* neck + head */}
-        <polygon points="72,61 82,61 100,28" fill={c(0.56, 0.18)} />
-        <polygon points="78,61 82,61 100,28" fill={c(0.46, 0.16)} />
-        <polygon points="100,28 113,35 98,33" fill={c(0.5, 0.17)} />
-
-        {/* near wing — two facets split by the centre crease */}
+        <g className="origami-wing-far">{FAR_WING.map(facet)}</g>
+        {BODY.map(facet)}
         <g className="origami-wing-near">
-          <polygon points="48,61 63,61 67,4" fill={c(0.7, 0.16)} />
-          <polygon points="63,61 78,61 67,4" fill={c(0.6, 0.18)} />
+          {NEAR_WING.map(facet)}
           {/* darkens as the wing tilts away from the light */}
           <polygon className="origami-wing-shade" points="48,61 78,61 67,4" fill={c(0.25, 0.08)} />
         </g>

@@ -16,6 +16,8 @@ import { MobileSiteHeader } from "@/components/desk/MobileSiteHeader";
 import { IntroLoader } from "@/components/desk/IntroLoader";
 import anchorImg from "@/assets/desk/anchor.webp";
 import { CutoutImage } from "@/components/desk/CutoutImage";
+import { Senbazuru } from "@/components/desk/senbazuru/Senbazuru";
+import { SiteFooter } from "@/components/desk/SiteFooter";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -106,6 +108,9 @@ function Index() {
         <WorkSection />
         <ContactSection />
       </div>
+
+      <Senbazuru />
+      <SiteFooter />
     </div>
   );
 }
